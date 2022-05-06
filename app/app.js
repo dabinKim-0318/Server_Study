@@ -7,13 +7,13 @@ const res = require("express/lib/response");
 
 //**************************앱 세팅******************** */
 //이 화면이 관리될 폴더를 파라미터로 넘겨주면 됨
-app.set("views","./views");
+app.set("views","./src/views");
 //views안에 생성된 html코드들을 어떤 엔진으로 생성할지 적어줌
 app.set("view engine","ejs");
 
 
-//listen으로 3000번 포트 열고, 두번째 파라미터에선 콜백 함수로 
-//하단에 터미널띄우고 현재 이디렉토리에서 터미널이 열림 
+//listen으로 3000번 포트 열고, 두번째 파라미터에선 콜백 함수로
+//하단에 터미널띄우고 현재 이디렉토리에서 터미널이 열림
 //pwd하면 현재 디렉토리 표시하고
 //app.js파일을 js로 읽어줌 node는 js파일을 v8엔진을 활용해서이 코드를 해석해달라는 js전용컴파일러같은거
 
@@ -33,8 +33,8 @@ app.set("view engine","ejs");
 //**************************라우팅******************** */
 //use-> 미들웨어를 등록해주는 메서드.
 // 루트 경로로 들어오면 home으로 보내라
-const home=require("./routes/home")  //index.js로 이동해서 callback함수가 실행도딤
-app.use("/",home); 
+const home=require("./src/routes/home");  //index.js로 이동해서 callback함수가 실행도딤
+app.use("/",home); //app.use를 사용해 생성한 폴더의 index.js로 접근
 
 
 //http://localhost:3000/login  로 접속
@@ -43,13 +43,16 @@ app.use("/",home);
 //`` 해줘야 줄바꿈해주는곳도 인식
 //app.use("/login",home);
 // app.get("/login",(req,res)=>{
-//     res.send( 
+//     res.send(
 //         res.render("home/login")
 //     );
 // });
 
-const POST=3000;
-app.listen(POST,function () {
-    console.log("서버가동");
-});
 
+ const POST=3000;
+ app.listen(POST,function () {
+     console.log("서버가동");
+ });
+//bin 폴더로 모듈화 해보자
+
+//module.exports=app; //위에 있는애 모듈화 하느라 app 을 빼줌
